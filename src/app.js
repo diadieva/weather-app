@@ -38,6 +38,7 @@ function displayTemperature(response) {
 
 }
 let apiKey = "67463d90019f3c15672ebddc2b82fac3";
+let city = "Kyiv";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=50.43331&lon=30.5167&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
