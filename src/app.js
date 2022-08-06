@@ -44,10 +44,31 @@ iconElement.setAttribute(
 
 }
 
+let searchForm = document.querySelector("#city-input");
+searchForm.addEventListener("submit", handleSubmit);
+
+function findLocation(position) {
+  let apiKey = "67463d90019f3c15672ebddc2b82fac3";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+
+
+function currentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(findLocation);
+}
+
+let currentLocationButton = document.querySelector("#locationButton");
+currentLocationButton.addEventListener("click", currentLocation);
+
+
 function search(city) {
 let apiKey = "67463d90019f3c15672ebddc2b82fac3";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=50.43331&lon=30.5167&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(displayTemperature);
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function handleSubmit(event) {
@@ -56,7 +77,33 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+
+function temperatureFah(event) {
+  event.preventDefault();
+
+let tempCel = document.querySelector("#temperature");
+  let currentTemp = 36;
+  let tempFah = Math.round(currentTemp * 1.8 + 32);
+  tempCel.innerHTML = tempFah;
+}
+
+function temperatureCel(event) {
+  event.preventDefault();
+
+  let tempCel = document.querySelector("#temperature");
+  let currentTemp = 36;
+  tempCel.innerHTML = currentTemp;
+}
+
+let tempFah = document.querySelector("#fahrenheit");
+tempFah.addEventListener("click", temperatureFah);
+let tempCel = document.querySelector("#celsius");
+tempCel.addEventListener("click", temperatureCel);
+
 let form = document.querySelector("#search-form");
-form.addEventListener("submint", handleSubmit);
+form.addEventListener("submit", handleSubmit);
 
 search("Kyiv");
+
+
+
