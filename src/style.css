@@ -94,7 +94,7 @@ transition: ease-in-out 300ms;
 }
 
 #city-input {
-font-family: 'Manrope', sans-serif;
+font-weight: 200;
 background: none;
 color: white;
 }
@@ -103,7 +103,8 @@ color: white;
     opacity: 30%;
 }
 #temperature {
-    color: #D05EA2
+    color: #D05EA2;
+    font-weight: 200;
 }
 
 a:link {
@@ -124,4 +125,7 @@ a:active {
 font-weight: 200;
 text-align: center;
 margin-top: 20px;
+}
+.units {
+    font-weight: 200;
 }
